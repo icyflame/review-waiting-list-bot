@@ -7,7 +7,7 @@ class PullRequests {
     this.prs = prs
     this.label = label
     this.reviewer = reviewer
-    _.bindAll(this, ['matchesLabel', 'matchesReviewer', 'formatPullRequest', 'reviewersText'])
+    _.bindAll(this, ['matchesLabel', 'matchesReviewer', 'formatPullRequest'])
   }
 
   isIgnorable(pr) {
@@ -55,12 +55,7 @@ class PullRequests {
   }
 
   formatPullRequest(pr, index) {
-    return `${index+1}. \`${pr.title}\` ${pr.url} by ${pr.author.login} ${this.reviewersText(pr.reviewRequests.nodes)}`
-  }
-
-  reviewersText(reviewRequests) {
-    const reviewers = _.map(reviewRequests, rr => (rr.requestedReviewer.login || rr.requestedReviewer.name))
-    return reviewers.length > 0 ? `(reviewer: ${reviewers.join(', ')})` : '(no reviewer assigned)'
+    return `${index+1}. \`${pr.title}\` ${pr.url} by ${pr.author.login}`
   }
 
   convertToSlackMessages() {
