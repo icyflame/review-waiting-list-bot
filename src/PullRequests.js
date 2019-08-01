@@ -11,7 +11,7 @@ class PullRequests {
   }
 
   isIgnorable(pr) {
-    const wordsToIgnore = ['wip', 'dontmerge', 'donotmerge']
+    const wordsToIgnore = ['wip', 'dontmerge', 'donotmerge', 'blocked']
     const regexToIgnore = new RegExp(`(${wordsToIgnore.join('|')})`, 'i')
 
     if (pr.labels != null && pr.labels.nodes.length > 0) {
